@@ -45,16 +45,23 @@ const ResultSection = styled.div`
 
 const App = () => {
   const [inputNumber, setInputNumber] = useState(0);
+  const [btn, setBtn] = useState("");
 
   const handleChange = (e) => {
     setInputNumber(e.target.value);
     console.log(inputNumber);
   };
 
-  const handleClick = (e) => {
+  const handleClickNumber = (e) => {
     const { number } = e.target.dataset;
     setInputNumber(number);
     console.log(inputNumber);
+  };
+
+  const handleClickBtn = (e) => {
+    const { btn: targetBtn } = e.target.dataset;
+    setBtn(targetBtn);
+    console.log(btn);
   };
 
   return (
@@ -65,45 +72,55 @@ const App = () => {
         style={{ fontSize: "18px" }}
       />
       <Section>
-        <Number onClick={handleClick} data-number={7}>
+        <Number onClick={handleClickNumber} data-number={7}>
           7
         </Number>
-        <Number onClick={handleClick} data-number={8}>
+        <Number onClick={handleClickNumber} data-number={8}>
           8
         </Number>
-        <Number onClick={handleClick} data-number={9}>
+        <Number onClick={handleClickNumber} data-number={9}>
           9
         </Number>
-        <Button>X</Button>
+        <Button onClick={handleClickBtn} data-btn={"*"}>
+          X
+        </Button>
       </Section>
       <Section>
-        <Number onClick={handleClick} data-number={4}>
+        <Number onClick={handleClickNumber} data-number={4}>
           4
         </Number>
-        <Number onClick={handleClick} data-number={5}>
+        <Number onClick={handleClickNumber} data-number={5}>
           5
         </Number>
-        <Number onClick={handleClick} data-number={6}>
+        <Number onClick={handleClickNumber} data-number={6}>
           6
         </Number>
-        <Button>-</Button>
+        <Button onClick={handleClickBtn} data-btn={"-"}>
+          -
+        </Button>
       </Section>
       <Section>
-        <Number onClick={handleClick} data-number={1}>
+        <Number onClick={handleClickNumber} data-number={1}>
           1
         </Number>
-        <Number onClick={handleClick} data-number={2}>
+        <Number onClick={handleClickNumber} data-number={2}>
           2
         </Number>
-        <Number onClick={handleClick} data-number={3}>
+        <Number onClick={handleClickNumber} data-number={3}>
           3
         </Number>
-        <Button>+</Button>
+        <Button onClick={handleClickBtn} data-btn={"+"}>
+          +
+        </Button>
       </Section>
       <ResultSection>
         <Result>0</Result>
-        <Button>.</Button>
-        <Button>=</Button>
+        <Button onClick={handleClickBtn} data-btn={"."}>
+          .
+        </Button>
+        <Button onClick={handleClickBtn} data-btn={"="}>
+          =
+        </Button>
       </ResultSection>
     </Wrapper>
   );
